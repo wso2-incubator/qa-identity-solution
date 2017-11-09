@@ -31,9 +31,9 @@
 	<div class="join">Medicare Doctors App</div>
 	        <div class="clr"></div>
     	    	<div class="login-options">Choose one of the following Login methods.</div>
-                	<a class="yahoo" href="samlsso?SAML2.HTTPBinding=HTTP-Redirect">Yahoo</a>
+                	<a class="yahoo" href="openid?OpenId.ClaimedId=<%=((SSOAgentConfig)getServletContext().getAttribute(SSOAgentConstants.CONFIG_BEAN_NAME)).getOpenId().getProviderURL()%>">Yahoo</a>
                     <a class="facebook" href="samlsso?SAML2.HTTPBinding=HTTP-Redirect">Facebook</a>
-                    <a class="google" href="openid?OpenId.ClaimedId=<%=((SSOAgentConfig)getServletContext().getAttribute(SSOAgentConstants.CONFIG_BEAN_NAME)).getOpenId().getProviderURL()%>">Google+</a>
+                    <a class="google" href="samlsso?SAML2.HTTPBinding=HTTP-Redirect">Google+</a>
                     <div class="clr"><hr /></div>
                     		<div class="mail-text">Or sign up using your email address.</div>
                             		<div class="forms">
@@ -44,7 +44,8 @@
                                     </div>
 						<a class="create-acc" href="#">Login My Account</a>
                         <div class="clr"><hr /></div>
-						<center><a class="create-acc" href="#" style="background-color:#C0C0C0; display:inline-block;width:400px;">Insurance app</a></center>
+						<center><a class="create-acc" href="http://192.168.48.131:8080/insurance.com" style="background-color:#C0C0C0; display:inline-block;width:400px;">Insurance app</a></center>
+
 </div>
 
 </body>
