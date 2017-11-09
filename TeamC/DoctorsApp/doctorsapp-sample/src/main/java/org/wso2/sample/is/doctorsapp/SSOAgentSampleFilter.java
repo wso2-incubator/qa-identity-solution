@@ -16,7 +16,7 @@
  * under the License.
  */
 
-package org.wso2.sample.is.sso.agent;
+package org.wso2.sample.is.doctorsapp;
 
 import org.apache.axiom.om.util.Base64;
 import org.apache.commons.lang.StringUtils;
