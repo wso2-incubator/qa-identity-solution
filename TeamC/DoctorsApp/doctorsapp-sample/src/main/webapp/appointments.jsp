@@ -61,7 +61,7 @@
     <div id="content-area">
         <hr />
         <div class="product-box">
-        <h1>Patients Details</h1>
+        <h1>Appointment Details</h1>
         <a href="index.jsp">Go to Login page</a><br/>
 
             <hr/>
