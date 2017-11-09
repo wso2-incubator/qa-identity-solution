@@ -65,7 +65,7 @@
         </table>
         <h1>Travelocity.COM</h1>
         <hr />
-         <a href="usermgt.jsp"> User Administration</a>&nbsp;&nbsp;&nbsp;&nbsp; <form id="form2" action="deleteUsers" method="post">  <a href="javascript:;" onclick="document.getElementById('form2').submit();">Delete Users</a> <input type="hidden" name="delete" value="Delete Users"/>  </form>  &nbsp;&nbsp;  <a href="home.jsp">Role Administration</a>
+         <a href="usermgt.jsp"> User Administration</a>&nbsp;<form id="form3" action="viewRoles" method="post">  <a href="javascript:;" onclick="document.getElementById('form3').submit();">View Roles</a> <input type="hidden" name="viewRoles" value="View Roles"/> </form> &nbsp;   &nbsp;&nbsp; <form id="form2" action="deleteUsers" method="post">  <a href="javascript:;" onclick="document.getElementById('form2').submit();">Delete Users</a> <input type="hidden" name="delete" value="Delete Users"/>  </form>  &nbsp;&nbsp;  <a href="home.jsp">Role Administration</a>
                  <hr/>
                  <form id="form1" action="userroleview" method="post">  <a href="javascript:;" onclick="document.getElementById('form1').submit();">View Users</a> <input type="hidden" name="view" value="View Users"/>
                  </form> <br/>

@@ -53,6 +53,11 @@
         <servlet-class>org.wso2.sample.is.sso.agent.AdminUserDeleteServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+    <servlet>
+        <servlet-name>AdminViewRolesServlet</servlet-name>
+        <servlet-class>org.wso2.sample.is.sso.agent.AdminViewRolesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
 
         <servlet-mapping>
         <servlet-name>ForwardingServlet</servlet-name>
@@ -90,7 +95,10 @@
         <servlet-name>AdminDeleteUserServlet</servlet-name>
         <url-pattern>/deleteSelectedUser</url-pattern>
     </servlet-mapping>
-
+    <servlet-mapping>
+        <servlet-name>AdminViewRolesServlet</servlet-name>
+        <url-pattern>/viewRoles</url-pattern>
+    </servlet-mapping>
 
     <filter>
         <filter-name>SSOAgentSampleFilter</filter-name>

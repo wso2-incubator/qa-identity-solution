@@ -129,7 +129,7 @@
             <%
                 }
             %>
-            <a href="usermgt.jsp"> User Administration</a>&nbsp;&nbsp; <form id="form2" action="deleteUsers" method="post">  <a href="javascript:;" onclick="document.getElementById('form2').submit();">Delete Users</a> <input type="hidden" name="delete" value="Delete Users"/> </form> &nbsp;&nbsp;<a href="home.jsp">Role Administration</a><br/>
+            <a href="usermgt.jsp"> User Administration</a>&nbsp;<form id="form3" action="viewRoles" method="post">  <a href="javascript:;" onclick="document.getElementById('form3').submit();">View Roles</a> <input type="hidden" name="viewRoles" value="View Roles"/> </form> &nbsp;<form id="form2" action="deleteUsers" method="post">  <a href="javascript:;" onclick="document.getElementById('form2').submit();">Delete Users</a> <input type="hidden" name="delete" value="Delete Users"/> </form> &nbsp;&nbsp;<a href="home.jsp">Role Administration</a><br/>
 
 
                 <h2>Existing Users in the System</h2>

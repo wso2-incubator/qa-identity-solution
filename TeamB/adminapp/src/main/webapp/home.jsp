@@ -135,7 +135,7 @@
                 }
             %>
 
-  <a href="usermgt.jsp"> User Administration</a>&nbsp;&nbsp; <form id="form2" action="deleteUsers" method="post">  <a href="javascript:;" onclick="document.getElementById('form2').submit();">Delete Users</a> <input type="hidden" name="delete" value="Delete Users"/> </form> &nbsp;&nbsp;  <form id="form1" action="userroleview" method="post">  <a href="javascript:;" onclick="document.getElementById('form1').submit();">View Users</a> <input type="hidden" name="view" value="View Users"/></form>
+  <a href="usermgt.jsp"> User Administration</a>&nbsp;<form id="form3" action="viewRoles" method="post">  <a href="javascript:;" onclick="document.getElementById('form3').submit();">View Roles</a> <input type="hidden" name="viewRoles" value="View Roles"/> </form>&nbsp;<form id="form2" action="deleteUsers" method="post"> <a href="javascript:;" onclick="document.getElementById('form2').submit();">Delete Users</a> <input type="hidden" name="delete" value="Delete Users"/> </form> &nbsp;<form id="form1" action="userroleview" method="post"> <a href="javascript:;" onclick="document.getElementById('form1').submit();">View Users</a><input type="hidden" name="view" value="View Users"/></form>
 
                 <h2>Add New Roles</h2>
 

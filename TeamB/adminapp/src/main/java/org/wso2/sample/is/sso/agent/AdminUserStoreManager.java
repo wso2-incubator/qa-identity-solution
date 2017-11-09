@@ -24,6 +24,9 @@ import org.apache.axis2.transport.http.HTTPConstants;
 import org.apache.xml.serialize.OutputFormat;
 import org.apache.xml.serialize.XMLSerializer;
 import org.jaxen.JaxenException;
+import org.json.JSONException;
+import org.json.JSONArray;
+import org.json.simple.parser.JSONParser;
 import org.w3c.dom.NodeList;
 import org.wso2.carbon.authenticator.stub.AuthenticationAdminStub;
 import org.wso2.carbon.authenticator.stub.LoginAuthenticationExceptionException;
@@ -85,6 +88,7 @@ import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -95,6 +99,7 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.json.JSONObject;
 import javax.xml.soap.SOAPBody;
 import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
@@ -164,29 +169,28 @@ public class AdminUserStoreManager extends SSOAgentFilter {
         String xmlInput =
 
                 "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsd=\"http://org.apache.axis2/xsd\">\n" +
-        "  <soapenv:Header/>\n" +
-                " <soapenv:Body>\n" +
-                "   <xsd:addRole>\n" +
-                "    <xsd:roleName>"+ roleName +"</xsd:roleName>\n" +
-                "     <xsd:userList>"+ users +"</xsd:userList>\n" +
-                "   <xsd:permissions>"+ permission +"</xsd:permissions>\n" +
-                "         <xsd:isSharedRole>false</xsd:isSharedRole>\n" +
-                "</xsd:addRole>\n" +
-                "</soapenv:Body>\n" +
-                "</soapenv:Envelope>";
-
+                        "  <soapenv:Header/>\n" +
+                        " <soapenv:Body>\n" +
+                        "   <xsd:addRole>\n" +
+                        "    <xsd:roleName>" + roleName + "</xsd:roleName>\n" +
+                        "     <xsd:userList>" + users + "</xsd:userList>\n" +
+                        "   <xsd:permissions>" + permission + "</xsd:permissions>\n" +
+                        "         <xsd:isSharedRole>false</xsd:isSharedRole>\n" +
+                        "</xsd:addRole>\n" +
+                        "</soapenv:Body>\n" +
+                        "</soapenv:Envelope>";
 
 
         byte[] buffer = new byte[xmlInput.length()];
         buffer = xmlInput.getBytes();
         bout.write(buffer);
         byte[] b = bout.toByteArray();
-        String SOAPAction ="addRole";
+        String SOAPAction = "addRole";
 // Set the appropriate HTTP parameters.
         httpConn.setRequestProperty("Content-Length",
                 String.valueOf(b.length));
         httpConn.setRequestProperty("Content-Type", "text/xml; charset=utf-8");
-        httpConn.setRequestProperty("Authorization", "Basic " +token);
+        httpConn.setRequestProperty("Authorization", "Basic " + token);
         httpConn.setRequestProperty("SOAPAction", SOAPAction);
         httpConn.setRequestMethod("POST");
         httpConn.setDoOutput(true);
@@ -205,61 +209,60 @@ public class AdminUserStoreManager extends SSOAgentFilter {
         System.out.println(responsemsg);
 
         return responseCode;
-  }
+    }
 
 
+    public void UserManagerEvent(ServletRequest servletRequest, ServletResponse servletResponse) throws IOException, ServletException {
 
-    public void UserManagerEvent (ServletRequest servletRequest, ServletResponse servletResponse) throws IOException,  ServletException {
+        try {
+            //Code to make   a webservice HTTP request
+            String userName = servletRequest.getParameter("userName");
+            String password = servletRequest.getParameter("password");
+            String role = servletRequest.getParameter("role");
+            String token = servletRequest.getParameter("authorization");
 
-        try{
-        //Code to make   a webservice HTTP request
-        String userName = servletRequest.getParameter("userName");
-        String password = servletRequest.getParameter("password");
-        String role = servletRequest.getParameter("role");
-        String token = servletRequest.getParameter("authorization");
+            System.out.println(token);
 
-        System.out.println(token);
+            String responseString = "";
+            String outputString = "";
+            String wsURL = "https://localhost:9443/services/UserAdmin/";
+            URL url = new URL(wsURL);
+            URLConnection connection = url.openConnection();
+            HttpURLConnection httpConn = (HttpURLConnection) connection;
+            ByteArrayOutputStream bout = new ByteArrayOutputStream();
+            String xmlInput =
 
-        String responseString = "";
-        String outputString = "";
-        String wsURL = "https://localhost:9443/services/UserAdmin/";
-        URL url = new URL(wsURL);
-        URLConnection connection = url.openConnection();
-        HttpURLConnection httpConn = (HttpURLConnection) connection;
-        ByteArrayOutputStream bout = new ByteArrayOutputStream();
-        String xmlInput =
-
-                "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsd=\"http://org.apache.axis2/xsd\">\n" +
-                        "  <soapenv:Header/>\n" +
-                        " <soapenv:Body>\n" +
-                        "   <xsd:addUser>\n" +
-                        "    <xsd:userName>" + userName + "</xsd:userName>\n" +
-                        "     <xsd:password>" + password + "</xsd:password>\n" +
-                        "   <xsd:roles>" + role + "</xsd:roles>\n" +
-                        "         <xsd:profileName>Default</xsd:profileName>\n" +
-                        "</xsd:addUser>\n" +
-                        "</soapenv:Body>\n" +
-                        "</soapenv:Envelope>";
+                    "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsd=\"http://org.apache.axis2/xsd\">\n" +
+                            "  <soapenv:Header/>\n" +
+                            " <soapenv:Body>\n" +
+                            "   <xsd:addUser>\n" +
+                            "    <xsd:userName>" + userName + "</xsd:userName>\n" +
+                            "     <xsd:password>" + password + "</xsd:password>\n" +
+                            "   <xsd:roles>" + role + "</xsd:roles>\n" +
+                            "         <xsd:profileName>Default</xsd:profileName>\n" +
+                            "</xsd:addUser>\n" +
+                            "</soapenv:Body>\n" +
+                            "</soapenv:Envelope>";
 
 
-        byte[] buffer = new byte[xmlInput.length()];
-        buffer = xmlInput.getBytes();
-        bout.write(buffer);
-        byte[] b = bout.toByteArray();
-        String SOAPAction = "addUser";
+            byte[] buffer = new byte[xmlInput.length()];
+            buffer = xmlInput.getBytes();
+            bout.write(buffer);
+            byte[] b = bout.toByteArray();
+            String SOAPAction = "addUser";
 // Set the appropriate HTTP parameters.
-        httpConn.setRequestProperty("Content-Length",
-                String.valueOf(b.length));
-        httpConn.setRequestProperty("Content-Type", "text/xml; charset=utf-8");
-        httpConn.setRequestProperty("Authorization", "Basic " + token);
-        httpConn.setRequestProperty("SOAPAction", SOAPAction);
-        httpConn.setRequestMethod("POST");
-        httpConn.setDoOutput(true);
-        httpConn.setDoInput(true);
-        OutputStream out = httpConn.getOutputStream();
+            httpConn.setRequestProperty("Content-Length",
+                    String.valueOf(b.length));
+            httpConn.setRequestProperty("Content-Type", "text/xml; charset=utf-8");
+            httpConn.setRequestProperty("Authorization", "Basic " + token);
+            httpConn.setRequestProperty("SOAPAction", SOAPAction);
+            httpConn.setRequestMethod("POST");
+            httpConn.setDoOutput(true);
+            httpConn.setDoInput(true);
+            OutputStream out = httpConn.getOutputStream();
 //Write the content of the request to the outputstream of the HTTP Connection.
-        out.write(b);
-        out.close();
+            out.write(b);
+            out.close();
 
 
             int responseCode = httpConn.getResponseCode();
@@ -272,8 +275,7 @@ public class AdminUserStoreManager extends SSOAgentFilter {
             System.out.println(responseCode);
 
 
-
-    }catch (IOException e){
+        } catch (IOException e) {
             LOGGER.log(Level.SEVERE, e.getMessage(), e);
         }
 
@@ -377,28 +379,27 @@ public class AdminUserStoreManager extends SSOAgentFilter {
         System.out.println(elementlist);
 
 
+        Iterator i = elementlist.getChildElements();
 
-         Iterator i = elementlist.getChildElements();
-
-         String[] users;
+        String[] users;
 
         List<String> names = new ArrayList<String>();
 
         while (i.hasNext()) {
-           OMElement user = (OMElement) i.next();
+            OMElement user = (OMElement) i.next();
 
-           String username = user.getText();
+            String username = user.getText();
 
             System.out.println(" while user>>>");
             System.out.println(username);
 
             names.add(username);
         }
-       // users = names.toArray(new String[0]); // <-- assign it here
+        // users = names.toArray(new String[0]); // <-- assign it here
 
 
-           System.out.println(" while users array>>>");
-           System.out.println(names);
+        System.out.println(" while users array>>>");
+        System.out.println(names);
 
 
         servletRequest.setAttribute("responseCode", responseCode);
@@ -407,8 +408,7 @@ public class AdminUserStoreManager extends SSOAgentFilter {
     }
 
 
-
-    public void UserDeleteEvent(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws IOException, ServletException  {
+    public void UserDeleteEvent(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws IOException, ServletException {
 
         String Deletename = servletRequest.getParameter("deletename");
         System.out.println("Deletename >>>>>>>>>>>>>>>>");
@@ -436,11 +436,11 @@ public class AdminUserStoreManager extends SSOAgentFilter {
         ByteArrayOutputStream bout = new ByteArrayOutputStream();
         String xmlInput =
 
-                      "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsd=\"http://org.apache.axis2/xsd\">\n" +
+                "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsd=\"http://org.apache.axis2/xsd\">\n" +
                         "  <soapenv:Header/>\n" +
                         " <soapenv:Body>\n" +
                         "   <xsd:deleteUser>\n" +
-                        "    <xsd:userName>"+ Deletename +"</xsd:userName>\n" +
+                        "    <xsd:userName>" + Deletename + "</xsd:userName>\n" +
                         "   </xsd:deleteUser>\n" +
                         "</soapenv:Body>\n" +
                         "</soapenv:Envelope>";
@@ -474,8 +474,52 @@ public class AdminUserStoreManager extends SSOAgentFilter {
 
 
     }
-}
 
+    public void RoleViewEvent(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws IOException, ServletException {
+
+        URL url = new URL("https://localhost:9443/wso2/scim/Groups");
+
+        String responseString = "";
+        String outputString = "";
+
+        try{
+            //make connection
+            URLConnection urlc = url.openConnection();
+            //It Content Type is so importan to support JSON call
+            urlc.setRequestProperty("Authorization", "Basic YWRtaW46YWRtaW4=");
+
+            urlc.setRequestProperty("Accept", "application/json");
+            urlc.setDoOutput(true);
+            urlc.setAllowUserInteraction(false);
+
+            //get result
+            BufferedReader br = new BufferedReader(new InputStreamReader(urlc.getInputStream()));
+
+            while ((responseString=br.readLine())!=null) {
+                outputString = outputString + responseString;
+            }
+
+
+            JSONObject jsonobj = new JSONObject(outputString);
+
+
+            JSONArray jsonArray = jsonobj.getJSONArray("Resources");
+
+            servletRequest.setAttribute("roles", jsonArray);
+
+
+            br.close();
+
+        } catch (Exception e){
+
+        }
+    }
+
+
+
+
+
+}
 
 
 
