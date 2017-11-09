@@ -133,7 +133,7 @@
             <%
                 }
             %>
-            <a href="usermgt.jsp"> User Administration</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="home.jsp">Role Administration</a>  <form id="form1" action="userroleview" method="post">  <a href="javascript:;" onclick="document.getElementById('form1').submit();">View Users</a> <input type="hidden" name="view" value="View Users"/>
+            <a href="usermgt.jsp"> User Administration</a>&nbsp;&nbsp;<form id="form3" action="viewRoles" method="post">  <a href="javascript:;" onclick="document.getElementById('form3').submit();">View Roles</a> <input type="hidden" name="viewRoles" value="View Roles"/> </form> &nbsp;<a href="home.jsp">Role Administration</a>  <form id="form1" action="userroleview" method="post">  <a href="javascript:;" onclick="document.getElementById('form1').submit();">View Users</a> <input type="hidden" name="view" value="View Users"/>
                                                                                                                                          </form><br/>
 
 

@@ -16,8 +16,12 @@
 ~ under the License.
 -->
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.Iterator" %>
+<%@ page import="java.util.Arrays" %>
+<%@ page import="org.json.JSONArray" %>
+<%@ page import="org.json.JSONObject" %>
 <%@ page import="org.wso2.carbon.identity.sso.agent.bean.LoggedInSessionBean" %>
 <%@ page import="org.wso2.carbon.identity.sso.agent.bean.SSOAgentConfig" %>
 <%@ page import="org.wso2.carbon.identity.sso.agent.SSOAgentConstants" %>
@@ -27,7 +31,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="css/cart-styles.css">
-    <title>User Management</title>
+    <title>WSO2</title>
 </head>
 <%
     String claimedId = null;
@@ -48,7 +52,6 @@
     LoggedInSessionBean sessionBean = (LoggedInSessionBean)session.getAttribute(SSOAgentConstants.SESSION_BEAN_NAME);
     LoggedInSessionBean.AccessTokenResponseBean accessTokenResponseBean = null;
 
-
     if(sessionBean != null){
         if(sessionBean.getOpenId() != null) {
             claimedId = sessionBean.getOpenId().getClaimedId();
@@ -57,7 +60,6 @@
             subjectId = sessionBean.getSAML2SSO().getSubjectId();
             saml2SSOAttributes = sessionBean.getSAML2SSO().getSubjectAttributes();
             accessTokenResponseBean = sessionBean.getSAML2SSO().getAccessTokenResponseBean();
-
         } else {
 %>
             <script type="text/javascript">
@@ -119,11 +121,10 @@
         <h1>Hospital Management System - Admin application</h1>
         <hr />
         <div class="product-box">
-           <%
+            <%
                 if(subjectId != null){
             %>
                     <h2> Hello! <%=subjectId%></h2>
-
             <%
                 } else if (claimedId != null) {
             %>
@@ -131,28 +132,59 @@
             <%
                 }
             %>
-      <a href="home.jsp">Role Administration</a>&nbsp;<form id="form3" action="viewRoles" method="post">  <a href="javascript:;" onclick="document.getElementById('form3').submit();">View Roles</a> <input type="hidden" name="viewRoles" value="View Roles"/> </form> &nbsp;<form id="form2" action="deleteUsers" method="post">  <a href="javascript:;" onclick="document.getElementById('form2').submit();">Delete Users</a> <input type="hidden" name="delete" value="Delete Users"/> </form> &nbsp;<form id="form1" action="userroleview" method="post">  <a href="javascript:;" onclick="document.getElementById('form1').submit();">View Users</a> <input type="hidden" name="view" value="View Users"/>
-</form>
-                <h2>Add New Users</h2>
+            <a href="usermgt.jsp"> User Administration</a>&nbsp;&nbsp; <form id="form2" action="deleteUsers" method="post">  <a href="javascript:;" onclick="document.getElementById('form2').submit();">Delete Users</a> <input type="hidden" name="delete" value="Delete Users"/> </form> &nbsp;<a href="home.jsp">Role Administration</a>&nbsp;
+<form id="form1" action="userroleview" method="post">  <a href="javascript:;" onclick="document.getElementById('form1').submit();">View Users</a> <input type="hidden" name="view" value="View Users"/> </form>
 
+                <h2>Existing Roles in the System</h2>
+
+
+
+
+ <table>
+
+<tr>
+      <td></td>
+      <td></td>
+      <td><h3>Rolename</h3></td>
+</tr>
+
+
+ 
+<%
+
+
+JSONArray roles = new JSONArray();
+roles = (JSONArray) request.getAttribute("roles");
+
+
+ for(int i=0;i<roles.length();i++){
+     JSONObject object = roles.getJSONObject(i);
+     String role = object.getString("displayName");
+
+
+
+%>
+ 
+
+ <tr> 
+
+       <td><%=i+1%></td>
+     <td></td>
+    <td><%=role%></td>
+  </tr>
+
+             <%
+}%>
+
+<tr>
+<td></td>
+<td>
+</td>
+<td></td>
+</tr>
+ </table>
              <div class="product-box">
-            <form method="post" action="usersubmit">
 
-
-                <h3>Input details to add the new User </h2>
-                User Name : <input type="text" name="userName" id="userName"/>
-                 <br/>
-                 <br/>
-                Password : <input type="password" name="password" id="password"/>
-                                  <br/> <br/>
-                Role : <input type="text" name="role" id="role">
-                  <br/>
-                   <br/>
-                  <input type="hidden" id="authorization" name="authorization" value="<%=session.getAttribute("authorization")%>" />
-
-                <input type="submit" value="Save"/>
-            </form>
-             </div>
 
                <table>
                 <%
