@@ -1,0 +1,14 @@
+body{
+    background: url(../images/pills.jpg) no-repeat; background-size:cover;
+}
+
+h3{
+    text-align: center;
+    padding-top: -1px;
+    color: white;
+    font-weight:normal
+}
+img{
+    margin-left: 640px;
+    margin-top: 280px;
+}
