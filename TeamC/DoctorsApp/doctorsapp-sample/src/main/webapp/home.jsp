@@ -102,7 +102,8 @@
             <a class="appointment-view" href="appointments.jsp"> </a>
             <hr />
 
-            <a href="../avis.com/home.jsp"> View Insurance </a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.jsp">Go to Login page</a><br/>
+            <a href="http://192.168.48.131:8080/insurance.com"> View Insurance </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;<a href="index.jsp">Go to Login page</a><br/>
             <table>
                 <%
                     if(saml2SSOAttributes != null){
