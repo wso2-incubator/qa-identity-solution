@@ -1,0 +1,117 @@
+/*Page layout styles*/
+
+
+body {
+	background: #2ca1cc;
+	margin: 0 auto;
+	padding: 0 auto;
+	font-family: 'Open Sans', sans-serif;
+	color: #777;
+	font-weight:300;
+	font-size: 16px;
+}
+
+a{
+    cursor:pointer;
+}
+div#container {
+    position: relative; /* needed for footer positioning*/
+    margin: 0 auto; /* center, not in IE5 */
+/*width:750px;*/
+
+    height: auto !important; /* real browsers */
+    height: 100%; /* IE6: treaded as min-height*/
+
+    min-height: 100%; /* real browsers */
+}
+/*
+#wrapper {
+	margin: 50px auto;
+	width: 540px;
+	height:540px;
+	background: #fff;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-o-border-radius: 5px;
+	-ms-border-radius: 5px;
+	border-radius: 5px;
+	padding: 40px;
+}*/
+
+/*
+div#header-area {
+    padding-left: 1em;
+    width: 980px;
+    height:139px;
+    background-image:url(../images/chart-headder-back.jpg);
+    background-repeat:no-repeat;
+    background-position:0 0;
+} */
+
+div#content-area {
+    padding: 1em 1em 1em 1em; /* bottom padding for footer */
+    width: 980px;
+    padding-bottom: 70px;
+    margin-top:-30px;
+}
+/*
+div#footer-area {
+    position: relative;
+    width: 99%;
+    bottom: 0;
+    background-color:#e6e6e6;
+    border-top:solid 3px #14566d;
+    padding-top:1em;
+    font-size:11px;
+    color:#333;
+    padding-bottom:50px;
+} */
+div#footer-area p {
+    padding-left:20px;    
+}
+
+/* Page decration styles*/
+
+
+.product-box{
+    background-image:url(../images/cart-content-back.gif);
+    background-repeat:repeat-x;
+    background-position:0 0;
+    border:solid 1px #ececec;
+    background-color:#fff;
+    margin-top:10px;
+    padding:1em;
+    margin-bottom:40px;
+    color:#535353;
+    line-height:30px; 
+}
+
+.patient-view{
+    content: "\0000a0";
+    display: inline-block;
+    height: 100px;
+    width: 150px;
+    line-height: 24px;
+    margin: 0 4px -6px -4px;
+    position: relative;
+    padding-left: 100px;
+    top: -10px;
+    left: -21px;
+    background: url(../images/patient2.png) no-repeat center;
+    background-size: 130px 80px;
+    }
+
+.appointment-view{
+content: "\0000a0";
+    display: inline-block;
+    height: 100px;
+    width: 150px;
+    line-height: 24px;
+    margin: 0 4px -6px -4px;
+    position: relative;
+    padding-left: 100px;
+    top: -10px;
+    left: -21px;
+    background: url(../images/appointment3.png) no-repeat center;
+    background-size: 90px 80px;
+    }
