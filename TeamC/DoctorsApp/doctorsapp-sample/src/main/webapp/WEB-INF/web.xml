@@ -25,7 +25,7 @@
 
     <servlet>
         <servlet-name>ForwardingServlet</servlet-name>
-        <servlet-class>org.wso2.sample.is.sso.agent.ForwardingServlet</servlet-class>
+        <servlet-class>org.wso2.sample.is.doctorsapp.ForwardingServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
@@ -47,7 +47,7 @@
 
     <filter>
         <filter-name>SSOAgentSampleFilter</filter-name>
-        <filter-class>org.wso2.sample.is.sso.agent.SSOAgentSampleFilter</filter-class>
+        <filter-class>org.wso2.sample.is.doctorsapp.SSOAgentSampleFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>SSOAgentSampleFilter</filter-name>
@@ -71,7 +71,7 @@
     </filter-mapping>
 
     <listener>
-        <listener-class>org.wso2.sample.is.sso.agent.SampleContextEventListener</listener-class>
+        <listener-class>org.wso2.sample.is.doctorsapp.SampleContextEventListener</listener-class>
     </listener>
     <listener>
         <listener-class>org.wso2.carbon.identity.sso.agent.saml.SSOAgentHttpSessionListener</listener-class>

@@ -15,7 +15,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.wso2.sample.is.sso.agent;
+package org.wso2.sample.is.doctorsapp;
 
 import org.wso2.carbon.identity.sso.agent.SSOAgentConstants;
 import org.wso2.carbon.identity.sso.agent.bean.SSOAgentConfig;
