@@ -11,7 +11,7 @@
 
     <artifactId>org.wso2.sample.is.sso.agent</artifactId>
     <packaging>war</packaging>
-    <name>authorityuser.com ServiceProvider / RelyingParty Webapp</name>
+    <name>authorityuser ServiceProvider / RelyingParty Webapp</name>
     <dependencies>
         <dependency>
             <groupId>org.opensaml</groupId>
@@ -72,7 +72,7 @@
     </dependencies>
 
     <build>
-        <finalName>authorityuser.com</finalName>
+        <finalName>authorityuser</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
