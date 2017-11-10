@@ -288,7 +288,7 @@ public class AdminUserStoreManager extends SSOAgentFilter {
 //        String roleName = servletRequest.getParameter("roleName");
 //        String users = servletRequest.getParameter("users");
 //        String permission = servletRequest.getParameter("permission");
-        String token = "YWRtaW46YWRtaW4";
+        String token = "YWRtaW46YWRtaW4=";
 
 
         System.out.println(token);
@@ -421,57 +421,56 @@ public class AdminUserStoreManager extends SSOAgentFilter {
 //        String permission = servletRequest.getParameter("permission");
         String token = "YWRtaW46YWRtaW4";
 
+        int responseCode = 0;
 
         System.out.println(token);
 
 
-        String responseString = "";
-        String outputString = "";
+        if (Deletename != "admin") {
 
+            String wsURL = "https://localhost:9443/services/UserAdmin/";
+            URL url = new URL(wsURL);
+            URLConnection connection = url.openConnection();
+            HttpURLConnection httpConn = (HttpURLConnection) connection;
+            ByteArrayOutputStream bout = new ByteArrayOutputStream();
+            String xmlInput =
 
-        String wsURL = "https://localhost:9443/services/UserAdmin/";
-        URL url = new URL(wsURL);
-        URLConnection connection = url.openConnection();
-        HttpURLConnection httpConn = (HttpURLConnection) connection;
-        ByteArrayOutputStream bout = new ByteArrayOutputStream();
-        String xmlInput =
+                    "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsd=\"http://org.apache.axis2/xsd\">\n" +
+                            "  <soapenv:Header/>\n" +
+                            " <soapenv:Body>\n" +
+                            "   <xsd:deleteUser>\n" +
+                            "    <xsd:userName>" + Deletename + "</xsd:userName>\n" +
+                            "   </xsd:deleteUser>\n" +
+                            "</soapenv:Body>\n" +
+                            "</soapenv:Envelope>";
 
-                "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsd=\"http://org.apache.axis2/xsd\">\n" +
-                        "  <soapenv:Header/>\n" +
-                        " <soapenv:Body>\n" +
-                        "   <xsd:deleteUser>\n" +
-                        "    <xsd:userName>" + Deletename + "</xsd:userName>\n" +
-                        "   </xsd:deleteUser>\n" +
-                        "</soapenv:Body>\n" +
-                        "</soapenv:Envelope>";
-
-        byte[] buffer = new byte[xmlInput.length()];
-        buffer = xmlInput.getBytes();
-        bout.write(buffer);
-        byte[] b = bout.toByteArray();
-        String SOAPAction = "deleteUser";
+            byte[] buffer = new byte[xmlInput.length()];
+            buffer = xmlInput.getBytes();
+            bout.write(buffer);
+            byte[] b = bout.toByteArray();
+            String SOAPAction = "deleteUser";
 // Set the appropriate HTTP parameters.
-        httpConn.setRequestProperty("Content-Length",
-                String.valueOf(b.length));
-        httpConn.setRequestProperty("Content-Type", "text/xml; charset=utf-8");
-        httpConn.setRequestProperty("Authorization", "Basic YWRtaW46YWRtaW4=");
-        httpConn.setRequestProperty("SOAPAction", SOAPAction);
-        httpConn.setRequestMethod("POST");
-        httpConn.setDoOutput(true);
-        httpConn.setDoInput(true);
-        OutputStream out = httpConn.getOutputStream();
+            httpConn.setRequestProperty("Content-Length",
+                    String.valueOf(b.length));
+            httpConn.setRequestProperty("Content-Type", "text/xml; charset=utf-8");
+            httpConn.setRequestProperty("Authorization", "Basic YWRtaW46YWRtaW4=");
+            httpConn.setRequestProperty("SOAPAction", SOAPAction);
+            httpConn.setRequestMethod("POST");
+            httpConn.setDoOutput(true);
+            httpConn.setDoInput(true);
+            OutputStream out = httpConn.getOutputStream();
 //Write the content of the request to the outputstream of the HTTP Connection.
-        out.write(b);
-        out.close();
+            out.write(b);
+            out.close();
 
-        int responseCode = httpConn.getResponseCode();
+            responseCode = httpConn.getResponseCode();
 
-        servletRequest.setAttribute("responseCode", responseCode);
+            servletRequest.setAttribute("responseCode", responseCode);
 
-        System.out.println("Response >>>");
+            System.out.println("Response >>>");
 
-        System.out.println(responseCode);
-
+            System.out.println(responseCode);
+        }
 
     }
 
@@ -516,9 +515,71 @@ public class AdminUserStoreManager extends SSOAgentFilter {
     }
 
 
+    public void ChangeUserPasswordEvent(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws IOException, ServletException {
+
+        String username = servletRequest.getParameter("username");
+        String password = servletRequest.getParameter("password");
+        System.out.println("Deletename >>>>>>>>>>>>>>>>");
+
+        System.out.println(username);
+        System.out.println("password >>>>>>>>>>>>>>>>");
+
+        System.out.println(password);
+
+        //Code to make   a webservice HTTP request
+//        String roleName = servletRequest.getParameter("roleName");
+//        String users = servletRequest.getParameter("users");
+//        String permission = servletRequest.getParameter("permission");
+        String token = "YWRtaW46YWRtaW4=";
 
 
+        System.out.println(token);
 
+        String wsURL = "https://localhost:9443/services/UserAdmin/";
+        URL url = new URL(wsURL);
+        URLConnection connection = url.openConnection();
+        HttpURLConnection httpConn = (HttpURLConnection) connection;
+        ByteArrayOutputStream bout = new ByteArrayOutputStream();
+        String xmlInput =
+
+                "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsd=\"http://org.apache.axis2/xsd\">\n" +
+                        "  <soapenv:Header/>\n" +
+                        " <soapenv:Body>\n" +
+                        "   <xsd:changePassword>\n" +
+                        "    <xsd:userName>" + username + "</xsd:userName>\n" +
+                        "    <xsd:newPassword>" + password + "</xsd:newPassword>\n" +
+                        "   </xsd:changePassword>\n" +
+                        "</soapenv:Body>\n" +
+                        "</soapenv:Envelope>";
+
+        byte[] buffer = new byte[xmlInput.length()];
+        buffer = xmlInput.getBytes();
+        bout.write(buffer);
+        byte[] b = bout.toByteArray();
+        String SOAPAction = "changePassword";
+// Set the appropriate HTTP parameters.
+        httpConn.setRequestProperty("Content-Length",
+                String.valueOf(b.length));
+        httpConn.setRequestProperty("Content-Type", "text/xml; charset=utf-8");
+        httpConn.setRequestProperty("Authorization", "Basic YWRtaW46YWRtaW4=");
+        httpConn.setRequestProperty("SOAPAction", SOAPAction);
+        httpConn.setRequestMethod("POST");
+        httpConn.setDoOutput(true);
+        httpConn.setDoInput(true);
+        OutputStream out = httpConn.getOutputStream();
+//Write the content of the request to the outputstream of the HTTP Connection.
+        out.write(b);
+        out.close();
+
+        int responseCode = httpConn.getResponseCode();
+
+        servletRequest.setAttribute("responseCode", responseCode);
+
+        System.out.println("Response >>>");
+
+        System.out.println(responseCode);
+
+    }
 }
 
 

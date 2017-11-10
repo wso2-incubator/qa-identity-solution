@@ -16,6 +16,7 @@
 ~ under the License.
 -->
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.Iterator" %>
 <%@ page import="org.wso2.carbon.identity.sso.agent.bean.LoggedInSessionBean" %>
@@ -27,7 +28,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="css/cart-styles.css">
-    <title>Role Administration</title>
+    <title>WSO2</title>
 </head>
 <%
     String claimedId = null;
@@ -48,7 +49,6 @@
     LoggedInSessionBean sessionBean = (LoggedInSessionBean)session.getAttribute(SSOAgentConstants.SESSION_BEAN_NAME);
     LoggedInSessionBean.AccessTokenResponseBean accessTokenResponseBean = null;
 
-
     if(sessionBean != null){
         if(sessionBean.getOpenId() != null) {
             claimedId = sessionBean.getOpenId().getClaimedId();
@@ -57,7 +57,6 @@
             subjectId = sessionBean.getSAML2SSO().getSubjectId();
             saml2SSOAttributes = sessionBean.getSAML2SSO().getSubjectAttributes();
             accessTokenResponseBean = sessionBean.getSAML2SSO().getAccessTokenResponseBean();
-
         } else {
 %>
             <script type="text/javascript">
@@ -75,6 +74,10 @@
         return;
     }
 %>
+
+
+
+
 <body>
 <div>
     <div id="header-area">
@@ -119,14 +122,10 @@
         <h1>Hospital Management System - Admin application</h1>
         <hr />
         <div class="product-box">
-
             <%
                 if(subjectId != null){
             %>
                     <h2> Hello! <%=subjectId%></h2>
-
-
-
             <%
                 } else if (claimedId != null) {
             %>
@@ -134,29 +133,72 @@
             <%
                 }
             %>
+            <a href="usermgt.jsp"> User Administration</a>&nbsp;&nbsp;<form id="form3" action="viewRoles" method="post">  <a href="javascript:;" onclick="document.getElementById('form3').submit();">View Roles</a> <input type="hidden" name="viewRoles" value="View Roles"/> </form> &nbsp;<a href="home.jsp">Role Administration</a>  <form id="form1" action="userroleview" method="post">  <a href="javascript:;" onclick="document.getElementById('form1').submit();">View Users</a> <input type="hidden" name="view" value="View Users"/>
+                                                                                                                                         </form><br/>
 
 
-  <a href="usermgt.jsp"> User Administration</a>&nbsp;<form id="form3" action="viewRoles" method="post">  <a href="javascript:;" onclick="document.getElementById('form3').submit();">View Roles</a> <input type="hidden" name="viewRoles" value="View Roles"/> </form>&nbsp;<form id="form2" action="deleteUsers" method="post"> <a href="javascript:;" onclick="document.getElementById('form2').submit();">Delete Users</a> <input type="hidden" name="delete" value="Delete Users"/> </form> &nbsp;<form id="form1" action="userroleview" method="post"> <a href="javascript:;" onclick="document.getElementById('form1').submit();">View Users</a><input type="hidden" name="view" value="View Users"/></form>&nbsp;<form id="form4" action="changeUserPword" method="post"> <a href="javascript:;" onclick="document.getElementById('form4').submit();">Change Password of a User</a> <input type="hidden" name="change" value="Change Password"/> </form>
-                <h2>Add New Roles</h2>
+                <h2>Existing Users in the System</h2>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#selection").change(function() {
+            location = $("#selection option:selected").val();
+        });
+    });
+</script>
+
+      <form method="post" action="updatePasswordPg">
+         <select name="changePword" onchange="gotoPage(this)">
+ <table>
+
+<tr>
+      <td></td>
+      <td></td>
+      <td><h3>Username</h3></td>
+</tr>
+
+
+ 
+<%
+ 
+ List<String> names = new ArrayList<String>();
+  names = (List<String>) request.getAttribute("users");
+int i =1;
+
+  for (String name: names) {   
+     
+
+
+%>
+ 
+
+ <tr> 
+  
+
+        <td> <option name="<%=name%>" value="<%=name%>"> </td>
+         <td></td>
+
+
+    <td><%=name%></td>
+  </tr>
+
+             <%
+    i+=1;
+}%>
+
+<tr>
+<td></td>
+<td>
+</td>
+<td></td>
+</tr>
+ </table>
+</select>
+<input type="submit" value="Change Password"/>
+
 
              <div class="product-box">
-            <form method="post" action="rolesubmit">
 
-
-                <h2>Input details to add the new User Role </h2>
-                Role Name : <input type="text" name="roleName" id="roleName"/>
-                 <br/>
-                  <br/>
-                User List : <input type="text" name="users" id="users"/>
-                                  <br/>
-                                  <br/>
-                Permission : <input type="text" name="permission" id="permission">
-                  <br/>
-                    <input type="hidden" id="authorization" name="authorization" value="<%=session.getAttribute("authorization")%>" />
-                 <br/>
-                <input type="submit" value="Save"/>
-            </form>
-             </div>
 
                <table>
                 <%
@@ -223,7 +265,7 @@
         </div>
     </div>
     <div id="footer-area">
-        <p>©2014 WSO2</p>
+        <p>©2017 WSO2</p>
     </div>
 </div>
 </body>
