@@ -140,21 +140,20 @@
                 <h2>Add New Roles</h2>
 
              <div class="product-box">
-            <form method="post" action="rolesubmit">
 
+       <% String username = request.getParameter("changePword");    %>
+
+            <form method="post" action="updatePassword">
 
                 <h2>Input details to add the new User Role </h2>
-                Role Name : <input type="text" name="roleName" id="roleName"/>
-                 <br/>
+              User Name : <input type="text" name="username" value="<%=request.getParameter("changePword")%>" readonly="readonly"/>
+        <br/>
                   <br/>
-                User List : <input type="text" name="users" id="users"/>
+                New Password : <input type="password" name="password" id="password"/>
                                   <br/>
-                                  <br/>
-                Permission : <input type="text" name="permission" id="permission">
-                  <br/>
-                    <input type="hidden" id="authorization" name="authorization" value="<%=session.getAttribute("authorization")%>" />
-                 <br/>
-                <input type="submit" value="Save"/>
+                                                  <br/>
+                <input type="subm:q!
+                it" value="Save"/>
             </form>
              </div>
 

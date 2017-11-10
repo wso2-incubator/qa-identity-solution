@@ -58,6 +58,21 @@
         <servlet-class>org.wso2.sample.is.sso.agent.AdminViewRolesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+    <servlet>
+        <servlet-name>AdminUserSelectChangeServlet</servlet-name>
+        <servlet-class>org.wso2.sample.is.sso.agent.AdminUserSelectChangeServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminUserChangePasswordServlet</servlet-name>
+        <servlet-class>org.wso2.sample.is.sso.agent.AdminUserChangePasswordServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminUserLoadPwrdPgServlet</servlet-name>
+        <servlet-class>org.wso2.sample.is.sso.agent.AdminUserLoadPwrdPgServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
 
         <servlet-mapping>
         <servlet-name>ForwardingServlet</servlet-name>
@@ -99,6 +114,19 @@
         <servlet-name>AdminViewRolesServlet</servlet-name>
         <url-pattern>/viewRoles</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminUserSelectChangeServlet</servlet-name>
+        <url-pattern>/changeUserPword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminUserChangePasswordServlet</servlet-name>
+        <url-pattern>/updatePasswordPg</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminUserLoadPwrdPgServlet</servlet-name>
+        <url-pattern>/updatePassword</url-pattern>
+    </servlet-mapping>
+
 
     <filter>
         <filter-name>SSOAgentSampleFilter</filter-name>
