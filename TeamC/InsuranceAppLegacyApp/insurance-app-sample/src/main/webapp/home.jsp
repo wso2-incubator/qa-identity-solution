@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>insuranceapp</title>
+
 </head>
 <%
     String claimedId = null;
@@ -56,12 +57,35 @@
     }
 %>
 
-<body>
-<h1>Welcome to Insurance App</h1>
+<body bgcolor="#00FF00">
+
+<!-- webpage content goes here in the body -->
+
+	<div id="page">
+		<div id="logo">
+			<h1><a href="#" id="logoLink">Welcome to Insurance App</a></h1>
+		</div>
+		<div id="nav">
+			<ul>
+				<li><a href="#/home.html">Home</a></li>
+				<li><a href="#/about.html">About</a></li>
+				<li><a href="#/contact.html">Contact</a></li>
+			</ul>
+		</div>
+		<div id="content">
+			<h2>Home</h2>
+			<p>
+				You can view all your insurance details from here
+			</p>
+
+		</div>
+		<div id="footer">
+			<h1>
+				Direct to Doctors App <a href="http://192.168.48.131:8080/doctorsapp.com/index.jsp" target="_blank">[Doctors App]</a>
+			</h1>
+		</div>
+	</div>
 </body>
-</html>
-
-
 
 
 
