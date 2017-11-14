@@ -166,8 +166,8 @@
                 <%
                     } catch (Exception e) {
                 %>
-                        <u><b>Error Occured</b></u>
-                        <div style="text-indent: 50px">An error occurred while calling the micro service: <%=e.getMessage()%> <br/></div>
+                        <u><b>An Error Occured</b></u>
+                        <div style="text-indent: 50px">An error occurred while calling the micro service: <b> <%=e.getMessage()%> </b><br/></div>
                 <%
                     }
 

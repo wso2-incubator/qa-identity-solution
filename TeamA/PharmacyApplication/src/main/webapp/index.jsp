@@ -55,20 +55,35 @@
             <h1>Welcome to XYZ Pharmacy</h1>
         </div>
         <div class="product-box">
+
             <h2>
-            <a id="fidp-sample" href="#">
-            <img src="images/medecinestock.png" title="Click to view deadliset diseases" width="128" height="128" border="0"/>
-            <span> Deadliest Diseases</span>
+            <a href="https://localhost:9443/dashboard/">
+            <img src="images/men.png" title="User detail management" width="96" height="96" border="0"/>
+            <span> User Management</span>
             </a>
             </h2>
-        </div>
-        <div class="product-box">
-                    <h2>
-                    <a href="#">
-                    <img src="images/nurse.png" title="Authoiry User Login" width="128" height="128" border="0"/>
-                    <span> Login as Authority User</span>
-                    </a>
-                    </h2>
+             <br/>
+            <h2>
+            <a id="fidp-sample" href="#">
+            <img src="images/medecinestock.png" title="Click to view deadliset diseases" width="96" height="96" border="0"/>
+            <span> Information Portal </span>
+            </a>
+            </h2>
+            <br/>
+            <h2>
+            <a href="#">
+            <img src="images/nurse.png" title="Authoiry User Login" width="96" height="96" border="0"/>
+            <span> Oauth Token</span>
+            </a>
+            </h2>
+
+            <br/>
+            <h2>
+            <a href="#">
+            <img src="images/pharmacy.png" title="Pharmacy Authority Management" width="96" height="96" border="0"/>
+            <span> Pharmacy Authority Management</span>
+            </a>
+            </h2>
         </div>
     </div>
 </div>
