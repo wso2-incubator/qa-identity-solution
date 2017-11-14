@@ -79,7 +79,7 @@ body {
 	margin-bottom: 25px;
 }
 
-.yahoo {
+.salesforce {
     display: inline-block;
     text-align: center;
     vertical-align: middle;
@@ -98,16 +98,16 @@ body {
     text-decoration: none;
 	margin-right: 10px;
 }
-.yahoo:hover,
-.yahoo:focus {
+.salesforce:hover,
+.salesforce:focus {
     background: #BA55D3;
     color: #ffffff;
     text-decoration: none;
 }
-.yahoo:active {
+.salesforce:active {
     background: #BA55D3;
 }
-.yahoo:before{
+.salesforce:before{
     content:  "\0000a0";
     display: inline-block;
     height: 50px;
@@ -118,7 +118,7 @@ body {
 	padding-left: 10px;
     top: -10px;
     left: -21px;
-    background: url("../images/yahoo.png") no-repeat center center #BA55D3;
+    background: url("../images/salesforce.png") no-repeat center center #BA55D3;
     background-size: 29px 24px;
 	-webkit-border-radius: 8px 0px 0px 8px;
 	-moz-border-radius: 8px 0px 0px 8px;
