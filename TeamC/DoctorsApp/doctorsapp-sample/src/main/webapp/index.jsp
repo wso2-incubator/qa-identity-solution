@@ -21,8 +21,9 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+
     <link rel="stylesheet" type="text/css" href="css/login-styles.css">
-    </style>
+
 </head>
 <body>
 <div id="container">
@@ -31,15 +32,15 @@
 	<div class="join">Medicare Doctors App</div>
 	        <div class="clr"></div>
     	    	<div class="login-options">Choose one of the following Login methods.</div>
-                	<a class="yahoo" href="openid?OpenId.ClaimedId=<%=((SSOAgentConfig)getServletContext().getAttribute(SSOAgentConstants.CONFIG_BEAN_NAME)).getOpenId().getProviderURL()%>">Yahoo</a>
+                	<a class="salesforce" href="samlsso?SAML2.HTTPBinding=HTTP-POST">SalesForce</a>
                     <a class="facebook" href="samlsso?SAML2.HTTPBinding=HTTP-Redirect">Facebook</a>
                     <a class="google" href="samlsso?SAML2.HTTPBinding=HTTP-Redirect">Google+</a>
                     <div class="clr"><hr /></div>
                     		<div class="mail-text">Or sign up using your email address.</div>
                             		<div class="forms">
                                     <form method="post" action="samlsso?SAML2.HTTPBinding=HTTP-POST">
-                                    <input name="email" type="text" value="Enter your email address..." size="60" onClick="border: 1px solid #30a8da;" id="mail" placeholder="Enter your username"/>
-                                    <input name="password" type="password" value="Enter a password..." size="60" onClick="border: 1px solid #30a8da;" id="password" placeholder="Enter your password"/>
+                                    <input name="email" type="text" value="Enter your email address..." size="60" onClick="border: 1px solid #30a8da;" id="mail" placeholder="Enter your username" style="width:450px;"/>
+                                    <input name="password" type="password" value="Enter a password..." size="60" onClick="border: 1px solid #30a8da;" id="password" placeholder="Enter your password" style="width:450px;"/>
                                     </form>
                                     </div>
 						<a class="create-acc" href="#">Login My Account</a>
