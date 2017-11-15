@@ -42,7 +42,7 @@ public class SampleContextEventListener implements ServletContextListener {
 
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         try {
-            if (servletContextEvent.getServletContext().getContextPath().contains("xyzpharmacy.com")) {
+            if (servletContextEvent.getServletContext().getContextPath().contains("xyzpharmacy")) {
                 properties.load(servletContextEvent.getServletContext().
                         getResourceAsStream("/WEB-INF/classes/xyzpharmacy.properties"));
             } else if (servletContextEvent.getServletContext().getContextPath().contains("avis.com")) {

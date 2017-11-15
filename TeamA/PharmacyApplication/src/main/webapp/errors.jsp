@@ -27,53 +27,19 @@
 </head>
 <body>
 <div id="container">
-    <div id="header-area">
-        <img src="images/cart-logo.gif" alt="Logo" vspace="10" />
+     <div id="content-area">
 
-    </div>
-    <div id="content-area">
-        <div class="cart-tabs">
-            <table cellpadding="0" cellspacing="0" border="0">
-                <tr>
-                    <td class="cart-tab-left"><img src="images/cart-tab-left.gif"
-                                                   alt="-"></td>
-                    <td class="cart-tab-mid"><a>Home</a></td>
-                    <td class="cart-tab-right"><img
-                            src="images/cart-tab-right.gif" alt="-"></td>
-                </tr>
-            </table>
-        </div>
-        <table cellpadding="0" cellspacing="0" border="0" class="cart-expbox">
-            <tr>
-                <td><img src="images/cart-expbox-01.gif" alt="-"></td>
-                <td class="cart-expbox-02">&nbsp</td>
-                <td><img src="images/cart-expbox-03.gif" alt="-"></td>
-            </tr>
-            <tr>
-                <td class="cart-expbox-08">&nbsp</td>
-                <td class="cart-expbox-09">
-                    <!--all content for cart and links goes here-->
-                </td>
-                <td class="cart-expbox-04">&nbsp</td>
-            </tr>
-            <tr>
-                <td><img src="images/cart-expbox-07.gif" alt="-"></td>
-                <td class="cart-expbox-06">&nbsp</td>
-                <td><img src="images/cart-expbox-05.gif" alt="-"></td>
-            </tr>
-
-        </table>
-        <h1>Travelocity.COM</h1>
+        <h1>An Error Occured</h1>
         <hr />
-        <a href="../avis.com"> Avis.COM </a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.jsp"> Go to Login page </a>
+        <a href="index.jsp"> Go to Welcome Page </a>
         <hr/>
         <h2>An error has occurred</h2>
         <%=exception.getMessage()%>
         <hr/>
     </div>
     <div id="footer-area">
-        <p>©2016 WSO2</p>
-    </div>
+            <p>©2017 XYZ Pharmacy</p>
+        </div>
 </div>
 </body>
 </html>
