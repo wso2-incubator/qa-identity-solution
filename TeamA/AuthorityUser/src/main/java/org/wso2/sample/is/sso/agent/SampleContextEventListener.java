@@ -70,7 +70,7 @@ public class SampleContextEventListener implements ServletContextListener {
     }
 
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
-
+        throw new UnsupportedOperationException("This method is not supported");
     }
 
     /**
